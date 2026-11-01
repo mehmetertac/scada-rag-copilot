@@ -62,4 +62,4 @@ CLIs: `python -m scada_rag.ingest`, `python -m scada_rag.retrieve --query "..."`
 
 ## Key commit
 
-Day-1 retrieval commit on `main`. Hash recorded in the push that added this file; if you are reading it in that commit, `git log -1` is the hash.
+`9796c8f` — local knowledge base and top-k retrieval (day 1). Chat completion is still the stub.
