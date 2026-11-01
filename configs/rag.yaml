@@ -1,0 +1,15 @@
+# Local RAG settings for the SCADA alarm copilot.
+# Paths are relative to the repository root.
+
+embed_model: BAAI/bge-small-en-v1.5
+# huggingface uses the local bge-small model (CPU). mock is a hash embedder for tests.
+embed_mode: huggingface
+chunk_size: 400
+chunk_overlap: 60
+top_k: 5
+collection: scada_kb
+persist_dir: storage/chroma
+kb_dir: kb
+# Day 2 chat model. Ingest and retrieve do not need Ollama.
+ollama_model: qwen2.5:3b
+ollama_base_url: http://localhost:11434
