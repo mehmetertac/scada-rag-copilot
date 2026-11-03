@@ -60,4 +60,4 @@ CLIs: `python -m scada_rag.ingest`, `python -m scada_rag.retrieve --query "..."`
 
 ## Key commit
 
-*(fill after push)* — v0.1.0 grounded agent and eval.
+`8ed17de` — v0.1.0 grounded agent, eval set, demo notebook. Tag `v0.1.0`.
