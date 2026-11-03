@@ -51,19 +51,27 @@ class HashEmbedding(BaseEmbedding):
         return self._get_query_embedding(query)
 
 
+_EMBED_CACHE: dict[tuple[str, str], BaseEmbedding] = {}
+
+
 def build_embed_model(config: RagConfig) -> BaseEmbedding:
+    key = (config.embed_mode, config.embed_model)
+    if key in _EMBED_CACHE:
+        return _EMBED_CACHE[key]
     if config.embed_mode == "mock":
-        return HashEmbedding(embed_dim=64)
-    if config.embed_mode != "huggingface":
+        model: BaseEmbedding = HashEmbedding(embed_dim=64)
+    elif config.embed_mode != "huggingface":
         raise ValueError(f"Unknown embed_mode {config.embed_mode!r}")
+    else:
+        from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
-    from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-
-    kwargs: dict[str, object] = {
-        "model_name": config.embed_model,
-        "device": "cpu",
-        "trust_remote_code": False,
-    }
-    if "bge" in config.embed_model.lower():
-        kwargs["query_instruction"] = _BGE_QUERY_INSTRUCTION
-    return HuggingFaceEmbedding(**kwargs)
+        kwargs: dict[str, object] = {
+            "model_name": config.embed_model,
+            "device": "cpu",
+            "trust_remote_code": False,
+        }
+        if "bge" in config.embed_model.lower():
+            kwargs["query_instruction"] = _BGE_QUERY_INSTRUCTION
+        model = HuggingFaceEmbedding(**kwargs)
+    _EMBED_CACHE[key] = model
+    return model

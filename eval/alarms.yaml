@@ -1,0 +1,136 @@
+# Hand-labelled synthetic alarms for eval. expected_source: kb filename or "abstain".
+scenarios:
+  - id: hss_bearing_partial_load
+    expected_source: gearbox_hss_bearing_overtemp.md
+    turbine_id: T06
+    alarm_code: Gearbox HSS bearing temperature high
+    timestamp: "2026-10-15T03:12:00Z"
+    snapshot:
+      Gear_Bear_Temp_Avg: 78.2
+      Gear_Oil_Temp_Avg: 52.1
+      Grd_Prod_Pwr_Avg: 420
+      Rtr_RPM_Avg: 11.2
+      Nac_Temp_Avg: 18.5
+    anomaly_score: 0.82
+    shap_sensors:
+      - tag: Gear_Bear_Temp_Avg
+        contribution: 0.41
+      - tag: Grd_Prod_Pwr_Avg
+        contribution: 0.12
+
+  - id: gearbox_oil_high_bearing_normal
+    expected_source: gearbox_oil_overtemp.md
+    turbine_id: T01
+    alarm_code: Gearbox oil temperature high
+    timestamp: "2026-10-16T14:00:00Z"
+    snapshot:
+      Gear_Oil_Temp_Avg: 71.0
+      Gear_Bear_Temp_Avg: 54.0
+      Grd_Prod_Pwr_Avg: 1800
+      Rtr_RPM_Avg: 18.5
+
+  - id: gearbox_lube_pressure
+    expected_source: gearbox_lubrication_alarms.md
+    turbine_id: T07
+    alarm_code: Gearbox oil pressure low
+    timestamp: "2026-10-17T08:30:00Z"
+    snapshot:
+      Gear_Oil_Press_Avg: 0.8
+      Gear_Oil_Temp_Avg: 48.0
+      Gear_Bear_Temp_Avg: 50.2
+      Grd_Prod_Pwr_Avg: 900
+
+  - id: pitch_blade2_deviation
+    expected_source: pitch_system_errors.md
+    turbine_id: T11
+    alarm_code: Pitch angle deviation blade 2
+    timestamp: "2026-10-18T22:05:00Z"
+    snapshot:
+      Blds_PitchAngle_2: 12.5
+      Blds_PitchAngle_1: 12.1
+      Blds_PitchAngle_3: 12.0
+      Blds_PitchAngle_Std: 2.8
+      Grd_Prod_Pwr_Avg: 1100
+
+  - id: generator_nde_bearing
+    expected_source: generator_bearing_faults.md
+    turbine_id: T06
+    alarm_code: Generator bearing temperature high NDE
+    timestamp: "2026-10-19T01:40:00Z"
+    snapshot:
+      Gen_Bear_Temp_Avg: 85.0
+      Gen_Bear_Temp_2_Avg: 62.0
+      Grd_Prod_Pwr_Avg: 1500
+      Rtr_RPM_Avg: 16.0
+
+  - id: generator_winding
+    expected_source: generator_winding_overtemp.md
+    turbine_id: T01
+    alarm_code: Generator winding temperature high
+    timestamp: "2026-10-20T16:20:00Z"
+    snapshot:
+      Gen_Winding_Temp_Avg: 118.0
+      Gen_Bear_Temp_Avg: 55.0
+      Grd_Prod_Pwr_Avg: 2000
+      Amb_Temp_Avg: 28.0
+
+  - id: converter_igbt_trip
+    expected_source: converter_trips.md
+    turbine_id: T07
+    alarm_code: Converter trip IGBT over-temperature
+    timestamp: "2026-10-21T11:00:00Z"
+    snapshot:
+      Conv_IGBT_Temp_Avg: 92.0
+      Conv_Cab_Temp_Avg: 48.0
+      Grd_Prod_Pwr_Avg: 0
+      Grd_Volt_Avg: 690
+
+  - id: grid_voltage_dip
+    expected_source: grid_side_faults.md
+    turbine_id: T06
+    alarm_code: Grid undervoltage trip multiple turbines
+    timestamp: "2026-10-22T09:01:00Z"
+    snapshot:
+      Grd_Volt_Avg: 612
+      Grd_Freq_Avg: 49.95
+      Grd_Prod_Pwr_Avg: 0
+
+  - id: yaw_misalignment
+    expected_source: yaw_misalignment.md
+    turbine_id: T11
+    alarm_code: Yaw misalignment persistent
+    timestamp: "2026-10-23T06:15:00Z"
+    snapshot:
+      Yaw_Error_Avg: 18.0
+      Wind_Dir_Rel_Avg: 22.0
+      Grd_Prod_Pwr_Avg: 600
+      Rtr_RPM_Avg: 10.5
+
+  - id: hydraulic_oil_temp
+    expected_source: hydraulic_system_alarms.md
+    turbine_id: T01
+    alarm_code: Hydraulic oil temperature high
+    timestamp: "2026-10-24T13:45:00Z"
+    snapshot:
+      Hyd_Oil_Temp_Avg: 68.0
+      Grd_Prod_Pwr_Avg: 800
+      Pitch_Hyd_Press_Avg: 145
+
+  - id: escalation_stop_gearbox
+    expected_source: procedure_escalation_thresholds.md
+    turbine_id: T07
+    alarm_code: Gearbox temperature alarm — when to stop turbine
+    timestamp: "2026-10-25T02:00:00Z"
+    snapshot:
+      Gear_Bear_Temp_Avg: 88.0
+      Gear_Oil_Temp_Avg: 75.0
+      Grd_Prod_Pwr_Avg: 200
+
+  - id: obstruction_light_out_of_kb
+    expected_source: abstain
+    turbine_id: T06
+    alarm_code: Obstruction aviation light failure
+    timestamp: "2026-10-26T20:00:00Z"
+    snapshot:
+      Avn_Light_Status: 0
+      Grd_Prod_Pwr_Avg: 1200

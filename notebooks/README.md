@@ -4,6 +4,6 @@ Notebooks are thin drivers. Ingest, retrieval, and the sanity queries live in `s
 
 | Notebook | What it does |
 | --- | --- |
-| [01_demo.ipynb](01_demo.ipynb) | Ingest `kb/` with the config in `configs/rag.yaml`, then run the five sanity queries |
+| [01_demo.ipynb](01_demo.ipynb) | Ingest, five sanity queries, one alarm through `RootCauseAgent.propose` |
 
-Run it from the repository root with the project venv so `bge-small` and Chroma match the CLI. The first run downloads the embedding model.
+Run from the repository root with the project venv. Needs Ollama and `qwen2.5:3b` for the agent cell. The first ingest downloads the embedding model.

@@ -28,6 +28,7 @@ class RagConfig:
     kb_dir: Path
     ollama_model: str
     ollama_base_url: str
+    ollama_request_timeout: float
 
     @classmethod
     def load(cls, path: Path | None = None, **overrides: Any) -> RagConfig:

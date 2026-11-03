@@ -13,3 +13,4 @@ kb_dir: kb
 # Day 2 chat model. Ingest and retrieve do not need Ollama.
 ollama_model: qwen2.5:3b
 ollama_base_url: http://localhost:11434
+ollama_request_timeout: 300

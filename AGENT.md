@@ -8,7 +8,7 @@ Guidance for agents working in **scada-rag-copilot**. Read this file first, then
 
 | Doc | Purpose |
 | --- | --- |
-| [README.md](README.md) | Setup, ingest, retrieve, what day 1 does not do |
+| [README.md](README.md) | Setup, grounded agent, eval table, limitations |
 | [handover.md](handover.md) | Status, layout, module API, next step |
 | [CHANGELOG.md](CHANGELOG.md) | Unreleased day-1 notes |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Retrieval flow, chunk metadata, twin boundary |
@@ -16,13 +16,14 @@ Guidance for agents working in **scada-rag-copilot**. Read this file first, then
 | [kb/](kb/) | Fault-mode notes, inspection checklist, escalation, EDP tag glossary |
 | [src/scada_rag/](src/scada_rag/) | `kb_loader`, `ingest`, `retrieve`, `agent`, `sanity` |
 | [tests/](tests/) | Unit tests (mock embeddings), CLI smoke, real-model sanity queries |
-| [notebooks/01_demo.ipynb](notebooks/01_demo.ipynb) | Thin driver: ingest, then the five queries |
+| [eval/alarms.yaml](eval/alarms.yaml) | Labelled synthetic alarms for eval |
+| [notebooks/01_demo.ipynb](notebooks/01_demo.ipynb) | Ingest, sanity queries, one grounded alarm |
 | [results/sanity_queries.md](results/sanity_queries.md) | Last top-3 table for the five queries |
 | [wind-digital-twin](https://github.com/mehmetertac/wind-digital-twin) | Gearbox thermal twin. Cite residuals; do not import it |
 | [wind-turbine-anomaly](https://github.com/mehmetertac/wind-turbine-anomaly) | Earlier physics-residual baseline |
 | [grid-gnn-faults](https://github.com/mehmetertac/grid-gnn-faults) | Grid-fault classifier for electrical alarms |
 
-Headline contract: retrieval returns the manual section; the twin supplies evidence when a section asks for it; the chat model (day 2) must not invent setpoints or claim it queried the twin.
+Headline contract: every ranked cause must cite a retrieved chunk or the agent abstains; the twin/GNN fields on the payload are context only; no invented setpoints or fake twin queries.
 
 ---
 
